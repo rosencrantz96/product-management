@@ -2,7 +2,9 @@ package kr.co.hanbit.product.management.application;
 
 import kr.co.hanbit.product.management.domain.Product;
 import kr.co.hanbit.product.management.infrastructure.ListProductRepository;
+import kr.co.hanbit.product.management.presentation.ProductController;
 import kr.co.hanbit.product.management.presentation.ProductDto;
+import org.apache.tomcat.util.openssl.pem_password_cb;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,5 +58,16 @@ public class SimpleProductService {
                 .map(product -> modelMapper.map(product, ProductDto.class))
                 .toList();
         return productDtos;
+    }
+
+    public ProductDto update(ProductDto productDto) {
+        Product product = modelMapper.map(productDto, Product.class);
+        Product updateProduct = listProductRepository.update(product);
+        ProductDto updatedProductDto = modelMapper.map(updateProduct, ProductDto.class);
+        return updatedProductDto;
+    }
+
+    public void delete(Long id) {
+        listProductRepository.delete(id);
     }
 }
