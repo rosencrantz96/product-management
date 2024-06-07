@@ -20,6 +20,18 @@ public class Product {
     @Min(0)
     private Integer amount;
 
+    public String getName() {
+        return name;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
