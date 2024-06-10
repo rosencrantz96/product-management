@@ -17,17 +17,15 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.3.0'
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '3.3.0'
-	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core:4.8.0'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.named('test') {
+tasks.named('test', Test) {
 	useJUnitPlatform()
 }
