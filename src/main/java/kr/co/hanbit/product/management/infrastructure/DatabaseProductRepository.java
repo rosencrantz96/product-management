@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@Profile("Prod")
+@Profile("prod")
 public class DatabaseProductRepository implements ProductRepository {
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -45,31 +45,19 @@ public class DatabaseProductRepository implements ProductRepository {
     public Product findById(Long id) {
         SqlParameterSource namedParameter = new MapSqlParameterSource("id", id);
 
-        Product product = namedParameterJdbcTemplate.queryForObject(
-                "SELECT id, name, price, amount FROM products WHERE id=:id",
-                namedParameter,
-                new BeanPropertyRowMapper<>(Product.class)
-        );
+        Product product = null;
 
+        try {
+            product = namedParameterJdbcTemplate.queryForObject(
+                    "SELECT id, name, price, amount FROM products WHERE id=:id",
+                    namedParameter,
+                    new BeanPropertyRowMapper<>(Product.class)
+            );
+        } catch (EmptyResultDataAccessException exception) {
+            throw new EntityNotFoundException("Product를 찾지 못했습니다.");
+        }
         return product;
     }
-
-//    public Product findById(Long id) {
-//        SqlParameterSource namedParameter = new MapSqlParameterSource("id", id);
-//
-//        Product product = null;
-//
-//        try {
-//            product = namedParameterJdbcTemplate.queryForObject(
-//                    "SELECT id, name, price, amount FROM products WHERE id=:id",
-//                    namedParameter,
-//                    new BeanPropertyRowMapper<>(Product.class)
-//            );
-//        } catch (EmptyResultDataAccessException exception) {
-//            throw new EntityNotFoundException("Product를 찾지 못했습니다.");
-//        }
-//        return product;
-//    }
 
     public List<Product> findAll() {
         List<Product> products = namedParameterJdbcTemplate.query(

@@ -33,13 +33,13 @@ class SimpleProductServiceTest {
         assertTrue(savedProductDto.getAmount() == foundProductDto.getAmount());
     }
 
-//    @Test
-//    @DisplayName("존재하지 않는 상품 id로 조회하면 EntityNotFoundException이 발생해야 한다.")
-//    void findProductNotExistIdTest() {
-//        Long notExistId = -1L;
-//
-//        assertThrows(EntityNotFoundException.class, () -> {
-//            simpleProductService.findById(notExistId);
-//        });
-//    }
+    @Test
+    @DisplayName("존재하지 않는 상품 id로 조회하면 EntityNotFoundException이 발생해야 한다.")
+    void findProductNotExistIdTest() {
+        Long notExistId = -1L;
+
+        assertThrows(EntityNotFoundException.class, () -> {
+            simpleProductService.findById(notExistId );
+        });
+    }
 }

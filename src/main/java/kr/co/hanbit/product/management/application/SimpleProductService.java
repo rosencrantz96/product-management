@@ -2,8 +2,6 @@ package kr.co.hanbit.product.management.application;
 
 import kr.co.hanbit.product.management.domain.Product;
 import kr.co.hanbit.product.management.domain.ProductRepository;
-import kr.co.hanbit.product.management.infrastructure.DatabaseProductRepository;
-import kr.co.hanbit.product.management.infrastructure.ListProductRepository;
 import kr.co.hanbit.product.management.presentation.ProductDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
