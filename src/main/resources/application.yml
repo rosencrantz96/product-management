@@ -1,6 +1,3 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    url: jdbc:mysql://localhost:3307/product_management
-    password: hanbit
+  profiles:
+    active: test
