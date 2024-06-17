@@ -12,13 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("prod")
+@ActiveProfiles("test")
 class SimpleProductServiceTest {
 
     @Autowired
     SimpleProductService simpleProductService;
 
-    @Transactional
+//    @Transactional
     @Test
     @DisplayName("상품을 추가한 후 id로 조회하면 해당 상품이 조회되어야 한다.")
     void productAddAndFindByIdTest() {
